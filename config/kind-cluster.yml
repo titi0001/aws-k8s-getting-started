@@ -4,16 +4,17 @@ nodes:
 - role: control-plane
 - role: worker
   extraPortMappings:
-  - containerPort: 30000
-    hostPort: 30000
-    listenAddress: "0.0.0.0" 
+    - containerPort: 30000
+      hostPort: 30000
+      listenAddress: "0.0.0.0"
+  extraMounts:
+    - hostPath: /home/thiago/All-projects/aws-k8s-getting-started/config/volume
+      containerPath: /home/volume 
 - role: worker
   extraPortMappings:
-  - containerPort: 30001
-    hostPort: 30001
-    listenAddress: "0.0.0.0" 
-- role: worker
-  extraPortMappings:
-  - containerPort: 30002
-    hostPort: 30002
-    listenAddress: "0.0.0.0" 
+    - containerPort: 30001
+      hostPort: 30001
+      listenAddress: "0.0.0.0"
+  extraMounts:
+    - hostPath: /home/thiago/All-projects/aws-k8s-getting-started/config/volume
+      containerPath: /home/volume 
