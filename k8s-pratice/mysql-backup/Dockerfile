@@ -1,5 +1,7 @@
 # Use uma imagem base com suporte ao AWS CLI e PostgreSQL client
-FROM ubuntu:20.04
+FROM ubuntu:latest
+# Defina a variável de ambiente DEBIAN_FRONTEND para noninteractive
+ENV DEBIAN_FRONTEND noninteractive
 
 # Instale as dependências necessárias
 RUN apt-get update && \
@@ -10,6 +12,13 @@ RUN apt-get update && \
 EXPOSE $AWS_REGION
 EXPOSE $AWS_ACCESS_KEY_ID
 EXPOSE $AWS_SECRET_ACCESS_KEY
+
+# vaiaveis do banco
+EXPOSE $DB_HOST
+EXPOSE $DB_PORT
+EXPOSE $DB_NAME
+EXPOSE $DB_USER
+EXPOSE $DB_PASSWORD
 
 # Copie os scripts e arquivos necessários para o contêiner
 COPY backup.sh /backup.sh
