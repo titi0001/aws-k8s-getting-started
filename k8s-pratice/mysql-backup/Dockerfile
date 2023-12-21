@@ -1,5 +1,6 @@
 # Use uma imagem base com suporte ao AWS CLI e PostgreSQL client
 FROM ubuntu:latest
+
 # Defina a variável de ambiente DEBIAN_FRONTEND para noninteractive
 ENV DEBIAN_FRONTEND noninteractive
 

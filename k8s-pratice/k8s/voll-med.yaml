@@ -25,7 +25,12 @@ spec:
             configMapKeyRef:
               name: dados          
               key: DB_HOST
-        - name: DB_DATABASE
+        - name: REDIS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: dados          
+              key: DB_HOST
+        - name: REDIS_HOST
           valueFrom:
             configMapKeyRef:
               name: dados          
