@@ -1,0 +1,21 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: backup-cronjob
+spec:
+  schedule: "0 3 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup-container
+            image: backup-image
+            env:
+            - name: AWS_ACCESS_KEY_ID
+              value: "$(aws configure get aws_access_key_id)"
+            - name: AWS_SECRET_ACCESS_KEY
+              value: "$(aws configure get aws_secret_access_key)"
+            - name: AWS_DEFAULT_REGION
+              value: "$(aws configure get region)"
+          restartPolicy: OnFailure
