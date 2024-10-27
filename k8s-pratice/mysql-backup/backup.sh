@@ -1,30 +1,11 @@
 #!/bin/bash
-
-ENV_FILE=".env"
-
-# Verifica se o arquivo .env existe
-if [ -f "$ENV_FILE" ]; then
-    # Carrega as variáveis de ambiente do arquivo .env
-    source "$ENV_FILE"
-
-    # Atribui os valores das variáveis de ambiente a variáveis locais
-    DB_HOST="$DB_HOST"
-    DB_PORT="$DB_PORT"
-    DB_NAME="$DB_NAME"
-    DB_USER="$DB_USER"
-    DATABASE_PASSWORD="$DB_PASSWORD"
-
-    # Aqui você pode realizar outras operações com as variáveis locais, se necessário
-    echo "Variáveis carregadas com sucesso:"
-    echo "DB_HOST: $DB_HOST"
-    echo "DB_PORT: $DB_PORT"
-    echo "DB_NAME: $DB_NAME"
-    echo "DB_USER: $DB_USER"
-    echo "DATABASE_PASSWORD: $DATABASE_PASSWORD"
-else
-    echo "O arquivo $ENV_FILE não foi encontrado."
-fi
-
+# Atribui os valores das variáveis de ambiente a variáveis locais
+DB_HOST="$DB_HOST"
+DB_PORT="$DB_PORT"
+DB_NAME="$DB_NAME"
+DB_USER="$DB_USER"
+DATABASE_PASSWORD="$DB_PASSWORD"
+AWS_REGION="$AWS_REGION"
 # Diretório de backup local
 LOCAL_BACKUP_DIR=/backup
 # Nome do arquivo de backup
@@ -35,7 +16,7 @@ pg_dump -h $DB_HOST -p $DB_PORT -U $DB_USER -d $DB_NAME -f $LOCAL_BACKUP_DIR/$BA
 
 # criando o buket s3 com nome de usuario
 bucket_name="titiura-backup-mysql"
-region=$(AWS_REGION)
+region=AWS_REGION
 
 # Criação de um cliente S3
 s3_client="aws s3api --region $region"
